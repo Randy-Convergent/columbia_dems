@@ -1,0 +1,229 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import EventCard from '../components/EventCard.astro';
+import { Image } from 'astro:assets';
+import bannerGroup from '../assets/images/banner-group.jpg';
+import takeActionHero from '../assets/images/take-action-hero.jpg';
+import flagSky from '../assets/images/flag-sky.jpg';
+import { DONATE_URL } from '../consts';
+
+const allEvents = await getCollection('events');
+const upcoming = allEvents
+  .sort((a, b) => {
+    if (a.data.recurring && !b.data.recurring) return -1;
+    if (!a.data.recurring && b.data.recurring) return 1;
+    return (a.data.date?.getTime() ?? 0) - (b.data.date?.getTime() ?? 0);
+  })
+  .slice(0, 3);
+---
+
+<Layout title="Columbia County Democrats">
+  <section class="hero">
+    <Image src={bannerGroup} alt="Columbia County Democrats volunteers holding the club banner" class="hero-img" width={1600} height={1067} />
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="eyebrow" style="color: var(--color-gold-400);">Columbia County, Oregon</p>
+      <h1>Building a better future for Columbia County — together.</h1>
+      <p class="hero-sub">
+        Through community, connection, and local action, Columbia County Democrats organizes
+        neighbors to elect Democratic candidates and fight for a county where everyone has access
+        to food, housing, healthcare, education, and a fair shot.
+      </p>
+      <div class="hero-ctas">
+        <Button href={DONATE_URL} variant="donate" external>Donate</Button>
+        <Button href="/get-involved" variant="secondary">Get Involved</Button>
+      </div>
+    </div>
+  </section>
+
+  <Section background="soft">
+    <p class="eyebrow">What we stand for</p>
+    <h2>Unity, inclusion, and real accountability.</h2>
+    <div class="pillars">
+      <article>
+        <span class="pillar-icon" aria-hidden="true">🤝</span>
+        <h3>Community</h3>
+        <p>We show up for our neighbors — organizing locally so every voice in Columbia County is heard.</p>
+      </article>
+      <article>
+        <span class="pillar-icon" aria-hidden="true">⚖️</span>
+        <h3>Constitution &amp; Democracy</h3>
+        <p>We're committed to upholding the U.S. Constitution and defending free, fair elections at every level.</p>
+      </article>
+      <article>
+        <span class="pillar-icon" aria-hidden="true">📣</span>
+        <h3>Action</h3>
+        <p>Democracy is not a spectator sport — we turn values into votes through phone banks, canvassing, and protest.</p>
+      </article>
+    </div>
+  </Section>
+
+  <Section background="white">
+    <div class="events-head">
+      <div>
+        <p class="eyebrow">Get on the calendar</p>
+        <h2>Upcoming Events</h2>
+      </div>
+      <Button href="/events" variant="secondary">See all events</Button>
+    </div>
+    <div class="events-grid">
+      {upcoming.map((event) => (
+        <EventCard
+          title={event.data.title}
+          date={event.data.date}
+          time={event.data.time}
+          location={event.data.location}
+          recurring={event.data.recurring}
+          sample={event.data.sample}
+        />
+      ))}
+    </div>
+  </Section>
+
+  <Section background="navy">
+    <div class="take-action">
+      <div class="take-action-copy">
+        <p class="eyebrow" style="color: var(--color-gold-400);">Ready to help?</p>
+        <h2>Volunteers are how we win Columbia County.</h2>
+        <p>
+          Knock doors, make calls, host a sign in your yard, or just show up — every hour you give
+          moves the needle. Tell us how you'd like to get involved.
+        </p>
+        <Button href="/get-involved" variant="donate">Join Us</Button>
+      </div>
+      <Image src={takeActionHero} alt="Columbia County Democrats volunteers taking action" width={800} height={450} class="take-action-img" />
+    </div>
+  </Section>
+
+  <Section background="soft" tight>
+    <div class="flag-strip">
+      <Image src={flagSky} alt="American flag against a blue sky" width={400} height={400} class="flag-img" />
+      <div>
+        <h2>Every voter. Every vote. Every time.</h2>
+        <p>Not registered yet, or not sure where to vote? We'll point you in the right direction.</p>
+        <Button href="/voter-information" variant="primary">Voter Information</Button>
+      </div>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 34rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, rgba(10, 26, 51, 0.92) 25%, rgba(10, 26, 51, 0.55) 75%);
+  }
+
+  .hero-content {
+    position: relative;
+    color: white;
+    max-width: 40rem;
+    padding-block: 4rem;
+  }
+
+  .hero-content h1 {
+    color: white;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .pillar-icon {
+    font-size: 2.25rem;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .events-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .take-action {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .take-action-img {
+    border-radius: var(--radius-lg);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .flag-strip {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .flag-img {
+    border-radius: var(--radius-lg);
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 900px) {
+    .pillars,
+    .events-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .take-action,
+    .flag-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .flag-img {
+      max-width: 220px;
+    }
+  }
+</style>

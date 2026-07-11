@@ -1,0 +1,174 @@
+---
+import { NAV_LINKS, DONATE_URL } from '../consts';
+import Button from './Button.astro';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="/" class="wordmark">
+      <span class="wordmark-star" aria-hidden="true">★</span>
+      <span>Columbia County<br /><strong>Democrats</strong></span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span class="visually-hidden">Menu</span>
+      <span class="bars" aria-hidden="true"></span>
+    </label>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        {NAV_LINKS.map((link) => (
+          <li>
+            <a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="nav-cta">
+        <Button href={DONATE_URL} variant="donate" external>Donate</Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.85rem;
+    position: relative;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--color-navy-900);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    line-height: 1.15;
+  }
+
+  .wordmark strong {
+    color: var(--color-red-600);
+  }
+
+  .wordmark-star {
+    color: var(--color-blue-600);
+    font-size: 1.6rem;
+  }
+
+  .nav-toggle,
+  .nav-toggle-label {
+    display: none;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: 1.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    padding-block: 0.4rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current='page'] {
+    color: var(--color-navy-900);
+    border-color: var(--color-red-600);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @media (max-width: 860px) {
+    .nav-toggle-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .bars,
+    .bars::before,
+    .bars::after {
+      content: '';
+      display: block;
+      width: 1.25rem;
+      height: 2px;
+      background: var(--color-navy-900);
+      position: relative;
+    }
+
+    .bars::before {
+      position: absolute;
+      top: -6px;
+    }
+
+    .bars::after {
+      position: absolute;
+      top: 6px;
+    }
+
+    .site-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-bottom: 1px solid var(--color-border);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 1rem 1.5rem 1.5rem;
+      display: none;
+    }
+
+    .site-nav ul {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .site-nav ul li a {
+      display: block;
+      padding: 0.6rem 0;
+    }
+
+    .nav-cta {
+      margin-top: 1rem;
+    }
+
+    .nav-toggle:checked ~ .site-nav {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,111 @@
+:root {
+  /* Brand palette */
+  --color-navy-950: #0a1a33;
+  --color-navy-900: #0f2247;
+  --color-navy-800: #163465;
+  --color-navy-700: #1e4785;
+  --color-blue-600: #2457c4;
+  --color-blue-500: #3b6fe0;
+  --color-blue-100: #e7edfb;
+  --color-red-600: #b31942;
+  --color-red-500: #d32152;
+  --color-gold-400: #f2b134;
+
+  --color-ink: #101418;
+  --color-ink-soft: #3c4650;
+  --color-paper: #ffffff;
+  --color-paper-soft: #f5f7fb;
+  --color-border: #dfe4ec;
+
+  --font-display: "Georgia", "Iowan Old Style", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --shadow-card: 0 10px 30px -12px rgba(15, 34, 71, 0.25);
+  --container-max: 72rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  margin: 0 0 0.6em;
+  color: var(--color-navy-900);
+}
+
+h1 { font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem); }
+h2 { font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem); }
+
+p {
+  margin: 0 0 1em;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--color-red-600);
+  margin-bottom: 0.75rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--color-navy-900);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  z-index: 100;
+  border-radius: 0 0 var(--radius-md) 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}

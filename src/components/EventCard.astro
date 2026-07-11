@@ -1,0 +1,83 @@
+---
+interface Props {
+  title: string;
+  date?: Date;
+  time?: string;
+  location: string;
+  recurring?: boolean;
+  sample?: boolean;
+}
+
+const { title, date, time, location, recurring = false, sample = false } = Astro.props;
+
+const formattedDate = date
+  ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date)
+  : undefined;
+---
+
+<article class="event-card">
+  {sample && <p class="badge">Sample content — replace before launch</p>}
+  <p class="tag">{recurring ? 'Recurring' : formattedDate}</p>
+  <h3>{title}</h3>
+  <ul class="meta">
+    {time && <li>🕒 {time}</li>}
+    <li>📍 {location}</li>
+  </ul>
+  <div class="body">
+    <slot />
+  </div>
+</article>
+
+<style>
+  .event-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+    height: 100%;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--color-gold-400);
+    color: var(--color-navy-950);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+
+  .tag {
+    color: var(--color-red-600);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+
+  .meta {
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .body {
+    margin-top: 1rem;
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+</style>

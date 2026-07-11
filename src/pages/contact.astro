@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import DemoForm from '../components/DemoForm.astro';
+import { CONTACT, SOCIAL } from '../consts';
+---
+
+<Layout title="Contact" description="Get in touch with Columbia County Democrats.">
+  <Section background="navy" tight>
+    <p class="eyebrow" style="color: var(--color-gold-400);">We'd love to hear from you</p>
+    <h1>Contact Us</h1>
+    <p class="lede">Questions, volunteer opportunities, or ways to support electing Democratic candidates — reach out.</p>
+  </Section>
+
+  <Section background="white">
+    <div class="contact-grid">
+      <div class="details">
+        <h2>Reach us directly</h2>
+        <ul>
+          <li><strong>Chair:</strong> {CONTACT.chairName}</li>
+          <li><strong>Phone:</strong> <a href={CONTACT.phoneHref}>{CONTACT.phone}</a></li>
+          <li><strong>Email:</strong> <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+          <li><strong>Location:</strong> Columbia County, Oregon</li>
+        </ul>
+        <div class="socials">
+          <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+
+      <div>
+        <h2>Send a message</h2>
+        <DemoForm id="contact-form" submitLabel="Send Message">
+          <div>
+            <label for="c-first">First name</label>
+            <input id="c-first" name="first-name" type="text" required autocomplete="given-name" />
+          </div>
+          <div>
+            <label for="c-last">Last name</label>
+            <input id="c-last" name="last-name" type="text" required autocomplete="family-name" />
+          </div>
+          <div>
+            <label for="c-email">Email</label>
+            <input id="c-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div>
+            <label for="c-message">Message</label>
+            <textarea id="c-message" name="message" rows="5" required></textarea>
+          </div>
+        </DemoForm>
+      </div>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .lede {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3.5rem;
+  }
+
+  .details ul {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 1.05rem;
+  }
+
+  .details a {
+    color: var(--color-blue-600);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .socials {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .socials a {
+    color: var(--color-navy-900);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

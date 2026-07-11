@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { Image } from 'astro:assets';
+import forestCanopy from '../assets/images/forest-canopy.jpg';
+
+const resources = [
+  {
+    title: 'Register to Vote',
+    description: 'Register online, check your registration status, or update your party affiliation with the Oregon Secretary of State.',
+    href: 'https://oregonvotes.gov',
+  },
+  {
+    title: 'Columbia County Elections Office',
+    description: 'Ballot drop sites, voting information, candidate resources, and how to reach the County Clerk directly.',
+    href: 'https://www.columbiacountyor.gov/departments/Elections/voting-information',
+  },
+  {
+    title: 'Elections Calendar',
+    description: 'Key filing and voting deadlines for upcoming Columbia County elections.',
+    href: 'https://www.columbiacountyor.gov/departments/Elections/calendar/636/',
+  },
+  {
+    title: 'Election Night Results',
+    description: 'Live Columbia County results as they come in on election night.',
+    href: 'https://www.columbiacountyor.gov/departments/Elections/county-election-night-results',
+  },
+];
+---
+
+<Layout
+  title="Voter Information"
+  description="Register to vote, find key election deadlines, and get Columbia County election results."
+>
+  <section class="hero">
+    <Image src={forestCanopy} alt="Aerial view of an Oregon forest canopy" class="hero-img" width={1920} height={700} />
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="eyebrow" style="color: var(--color-gold-400);">Every voter. Every vote.</p>
+      <h1>Voter Information</h1>
+      <p>
+        Democracy is not a spectator sport — engage and empower your community. Here's everything
+        you need to register, stay informed, and make your vote count in Columbia County.
+      </p>
+    </div>
+  </section>
+
+  <Section background="white">
+    <div class="resources-grid">
+      {resources.map((r) => (
+        <a class="resource-card" href={r.href} target="_blank" rel="noopener noreferrer">
+          <h3>{r.title}</h3>
+          <p>{r.description}</p>
+          <span class="link-arrow">Visit site →</span>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <Section background="soft">
+    <h2>Questions about voting?</h2>
+    <p>
+      Reach out to Chair Greg Pettit at <a href="tel:+15033337768">503-333-7768</a> and we'll help
+      point you in the right direction, or find full contact details on our <a href="/contact">Contact page</a>.
+    </p>
+  </Section>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 22rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 26, 51, 0.75), rgba(10, 26, 51, 0.85));
+  }
+
+  .hero-content {
+    position: relative;
+    color: white;
+    max-width: 42rem;
+    padding-block: 3.5rem;
+  }
+
+  .hero-content h1 {
+    color: white;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+
+  .resource-card {
+    display: block;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.15s ease;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .resource-card p {
+    color: var(--color-ink-soft);
+  }
+
+  .link-arrow {
+    color: var(--color-blue-600);
+    font-weight: 700;
+  }
+
+  @media (max-width: 720px) {
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
