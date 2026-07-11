@@ -17,6 +17,7 @@ export const CONTACT = {
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/profile.php?id=61585749099691',
   instagram: 'https://www.instagram.com/columbiacountydems',
+  tiktok: 'https://www.tiktok.com/@columbiacountydem',
 };
 
 export const NAV_LINKS = [

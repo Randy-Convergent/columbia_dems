@@ -21,6 +21,11 @@ const { size = 20 } = Astro.props;
       <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
     </svg>
   </a>
+  <a href={SOCIAL.tiktok} target="_blank" rel="noopener noreferrer" aria-label="Columbia County Democrats on TikTok" class="social-link tiktok">
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/>
+    </svg>
+  </a>
 </div>
 
 <style>
@@ -52,6 +57,11 @@ const { size = 20 } = Astro.props;
 
   .social-link.instagram:hover {
     background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+    color: white;
+  }
+
+  .social-link.tiktok:hover {
+    background: #000000;
     color: white;
   }
 </style>
