@@ -5,7 +5,7 @@ import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
 import EventCard from '../components/EventCard.astro';
 import { Image } from 'astro:assets';
-import bannerGroup from '../assets/images/banner-group.jpg';
+import lewisClarkBridge from '../assets/images/lewis-clark-bridge.jpg';
 import takeActionHero from '../assets/images/take-action-hero.jpg';
 import flagSky from '../assets/images/flag-sky.jpg';
 import SocialCTAButtons from '../components/SocialCTAButtons.astro';
@@ -23,7 +23,7 @@ const upcoming = allEvents
 
 <Layout title="Columbia County Democrats">
   <section class="hero">
-    <Image src={bannerGroup} alt="Columbia County Democrats volunteers holding the club banner" class="hero-img" width={1600} height={1067} />
+    <Image src={lewisClarkBridge} alt="The Lewis and Clark Bridge over the Columbia River, with Mt. St. Helens in the distance" class="hero-img" width={1083} height={651} />
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <p class="eyebrow" style="color: var(--color-gold-400);">Columbia County, Oregon</p>
@@ -169,6 +169,16 @@ const upcoming = allEvents
     gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1.5rem;
+  }
+
+  .hero-ctas :global(.btn-secondary) {
+    color: white;
+    border-color: white;
+  }
+
+  .hero-ctas :global(.btn-secondary:hover) {
+    background: white;
+    color: var(--color-navy-900);
   }
 
   .pillars {

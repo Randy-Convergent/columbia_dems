@@ -5,6 +5,7 @@ import Section from '../components/Section.astro';
 import OfficerCard from '../components/OfficerCard.astro';
 import { Image } from 'astro:assets';
 import protestCrowd from '../assets/images/protest-crowd.jpg';
+import bannerGroup from '../assets/images/banner-group.jpg';
 import { STATE_PARTY } from '../consts';
 
 const officers = (await getCollection('officers')).sort((a, b) => a.data.order - b.data.order);
@@ -14,15 +15,19 @@ const officers = (await getCollection('officers')).sort((a, b) => a.data.order -
   title="About Us"
   description="Learn about Columbia County Democrats' mission and the volunteer leadership team driving it."
 >
-  <Section background="navy" tight>
-    <p class="eyebrow" style="color: var(--color-gold-400);">Who we are</p>
-    <h1>Democracy is not a spectator sport.</h1>
-    <p class="lede">
-      Columbia County Democrats is committed to fostering a vibrant democratic community here at
-      home — upholding the U.S. Constitution, engaging every neighbor, and electing Democratic
-      candidates who fight inequality and systemic racism head-on.
-    </p>
-  </Section>
+  <section class="hero">
+    <Image src={bannerGroup} alt="Columbia County Democrats volunteers holding the club banner" class="hero-img" width={1600} height={1200} />
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="eyebrow" style="color: var(--color-gold-400);">Who we are</p>
+      <h1>Democracy is not a spectator sport.</h1>
+      <p class="lede">
+        Columbia County Democrats is committed to fostering a vibrant democratic community here at
+        home — upholding the U.S. Constitution, engaging every neighbor, and electing Democratic
+        candidates who fight inequality and systemic racism head-on.
+      </p>
+    </div>
+  </section>
 
   <Section background="white">
     <div class="mission-grid">
@@ -68,6 +73,40 @@ const officers = (await getCollection('officers')).sort((a, b) => a.data.order -
 </Layout>
 
 <style>
+  .hero {
+    position: relative;
+    min-height: 26rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(10, 26, 51, 0.6) 0%, rgba(10, 26, 51, 0.92) 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    color: white;
+    max-width: 42rem;
+    padding-block: 3.5rem;
+    text-shadow: 0 2px 16px rgba(10, 26, 51, 0.5);
+  }
+
+  .hero-content h1 {
+    color: white;
+  }
+
   .lede {
     max-width: 48rem;
     font-size: 1.15rem;
