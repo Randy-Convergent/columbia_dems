@@ -1,6 +1,6 @@
 ---
 interface Props {
-  background?: 'white' | 'soft' | 'navy';
+  background?: 'white' | 'soft' | 'navy' | 'gold';
   tight?: boolean;
 }
 
@@ -39,6 +39,14 @@ const { background = 'white', tight = false } = Astro.props;
   .bg-navy :global(h2),
   .bg-navy :global(h3) {
     color: white;
+  }
+
+  .bg-gold {
+    background: var(--color-gold-400);
+  }
+
+  .bg-gold :global(.eyebrow) {
+    color: var(--color-navy-900);
   }
 
   @media (max-width: 640px) {

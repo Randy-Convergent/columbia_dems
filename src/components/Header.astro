@@ -1,6 +1,7 @@
 ---
 import { NAV_LINKS, DONATE_URL } from '../consts';
 import Button from './Button.astro';
+import SocialLinks from './SocialLinks.astro';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -29,6 +30,7 @@ const currentPath = Astro.url.pathname;
         ))}
       </ul>
       <div class="nav-cta">
+        <SocialLinks />
         <Button href={DONATE_URL} variant="donate" external>Donate</Button>
       </div>
     </nav>
@@ -104,6 +106,12 @@ const currentPath = Astro.url.pathname;
     display: flex;
     align-items: center;
     gap: 2rem;
+  }
+
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   @media (max-width: 860px) {

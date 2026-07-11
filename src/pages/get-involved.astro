@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import DemoForm from '../components/DemoForm.astro';
+import SocialCTAButtons from '../components/SocialCTAButtons.astro';
 ---
 
 <Layout
@@ -80,6 +81,20 @@ import DemoForm from '../components/DemoForm.astro';
       </div>
     </div>
   </Section>
+
+  <Section background="gold">
+    <div class="social-section">
+      <div>
+        <p class="eyebrow">The lowest-effort way to help</p>
+        <h2>Just hit follow.</h2>
+        <p>
+          No form, no signup — following us on social is the easiest way to get involved. It's how
+          we announce meeting times, protest locations, and last-minute action alerts first.
+        </p>
+      </div>
+      <SocialCTAButtons />
+    </div>
+  </Section>
 </Layout>
 
 <style>
@@ -106,8 +121,21 @@ import DemoForm from '../components/DemoForm.astro';
     margin-bottom: 0.5rem;
   }
 
+  .social-section {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .social-section p:last-child {
+    margin-bottom: 0;
+    color: var(--color-navy-800);
+  }
+
   @media (max-width: 900px) {
-    .forms-grid {
+    .forms-grid,
+    .social-section {
       grid-template-columns: 1fr;
     }
   }

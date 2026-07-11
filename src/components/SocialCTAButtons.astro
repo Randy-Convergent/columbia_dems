@@ -1,0 +1,53 @@
+---
+import { SOCIAL } from '../consts';
+---
+
+<div class="social-ctas">
+  <a class="social-cta facebook" href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.45 2.91h-2.33v7.03C18.34 21.21 22 17.06 22 12.06Z"/>
+    </svg>
+    Follow on Facebook
+  </a>
+  <a class="social-cta instagram" href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+    </svg>
+    Follow on Instagram
+  </a>
+</div>
+
+<style>
+  .social-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .social-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.15s ease;
+  }
+
+  .social-cta:hover {
+    transform: translateY(-2px);
+  }
+
+  .social-cta.facebook {
+    background: #1877f2;
+  }
+
+  .social-cta.instagram {
+    background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  }
+</style>

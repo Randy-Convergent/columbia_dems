@@ -1,5 +1,6 @@
 ---
-import { CONTACT, SOCIAL, NAV_LINKS } from '../consts';
+import { CONTACT, NAV_LINKS } from '../consts';
+import SocialLinks from './SocialLinks.astro';
 
 const year = new Date().getFullYear();
 ---
@@ -9,10 +10,8 @@ const year = new Date().getFullYear();
     <div>
       <p class="wordmark">Columbia County <strong>Democrats</strong></p>
       <p class="tagline">Empowering Democratic voices in Columbia County, Oregon.</p>
-      <div class="socials">
-        <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-      </div>
+      <p class="follow-label">Follow us for meeting times &amp; updates</p>
+      <SocialLinks size={22} />
     </div>
 
     <div>
@@ -75,15 +74,11 @@ const year = new Date().getFullYear();
     color: rgba(255, 255, 255, 0.7);
   }
 
-  .socials {
-    display: flex;
-    gap: 1.25rem;
-  }
-
-  .socials a {
-    color: white;
-    text-decoration: none;
+  .follow-label {
+    font-size: 0.85rem;
     font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 0.75rem;
   }
 
   h2 {

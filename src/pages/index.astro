@@ -8,6 +8,7 @@ import { Image } from 'astro:assets';
 import bannerGroup from '../assets/images/banner-group.jpg';
 import takeActionHero from '../assets/images/take-action-hero.jpg';
 import flagSky from '../assets/images/flag-sky.jpg';
+import SocialCTAButtons from '../components/SocialCTAButtons.astro';
 import { DONATE_URL } from '../consts';
 
 const allEvents = await getCollection('events');
@@ -80,6 +81,20 @@ const upcoming = allEvents
           sample={event.data.sample}
         />
       ))}
+    </div>
+  </Section>
+
+  <Section background="gold">
+    <div class="follow-section">
+      <div>
+        <p class="eyebrow">Stay in the loop</p>
+        <h2>The fastest way to know where we'll be.</h2>
+        <p>
+          Meeting times, protest locations, and action alerts get posted first on social — follow
+          along so you never miss us.
+        </p>
+      </div>
+      <SocialCTAButtons />
     </div>
   </Section>
 
@@ -184,6 +199,18 @@ const upcoming = allEvents
     margin-top: 2.5rem;
   }
 
+  .follow-section {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .follow-section p:last-child {
+    margin-bottom: 0;
+    color: var(--color-navy-800);
+  }
+
   .take-action {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -217,6 +244,7 @@ const upcoming = allEvents
       grid-template-columns: 1fr;
     }
 
+    .follow-section,
     .take-action,
     .flag-strip {
       grid-template-columns: 1fr;

@@ -2,7 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import DemoForm from '../components/DemoForm.astro';
-import { CONTACT, SOCIAL } from '../consts';
+import SocialLinks from '../components/SocialLinks.astro';
+import { CONTACT } from '../consts';
 ---
 
 <Layout title="Contact" description="Get in touch with Columbia County Democrats.">
@@ -22,10 +23,8 @@ import { CONTACT, SOCIAL } from '../consts';
           <li><strong>Email:</strong> <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
           <li><strong>Location:</strong> Columbia County, Oregon</li>
         </ul>
-        <div class="socials">
-          <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-        </div>
+        <p class="follow-label">Follow us for the fastest updates</p>
+        <SocialLinks size={22} />
       </div>
 
       <div>
@@ -81,15 +80,10 @@ import { CONTACT, SOCIAL } from '../consts';
     font-weight: 600;
   }
 
-  .socials {
-    display: flex;
-    gap: 1.25rem;
-  }
-
-  .socials a {
-    color: var(--color-navy-900);
+  .follow-label {
     font-weight: 700;
-    text-decoration: none;
+    color: var(--color-navy-900);
+    margin-bottom: 0.6rem;
   }
 
   @media (max-width: 900px) {
