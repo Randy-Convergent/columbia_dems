@@ -5,8 +5,7 @@ export const SITE_NAME = 'Columbia County Democrats';
 export const SITE_DESCRIPTION =
   'Columbia County Democrats — empowering Democratic voices in Columbia County, Oregon.';
 
-// PLACEHOLDER — swap in the real ActBlue committee page URL before launch.
-export const DONATE_URL = 'https://secure.actblue.com/donate/columbia-county-democrats-placeholder';
+export const DONATE_URL = 'https://secure.actblue.com/donate/columbia-county-democratic-party--or--1';
 
 export const CONTACT = {
   chairName: 'Greg Pettit',

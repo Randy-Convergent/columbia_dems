@@ -58,7 +58,7 @@ Site-wide values (donate link, phone/email, social links, nav) live in
 
 ## Before you launch
 
-- [ ] Swap the placeholder ActBlue URL in `src/consts.ts` (`DONATE_URL`) for
+- [x] Swap the placeholder ActBlue URL in `src/consts.ts` (`DONATE_URL`) for
       the real committee donation link.
 - [ ] Wire the volunteer, newsletter, and contact forms to a real backend —
       e.g. a Cloudflare Pages Function that emails submissions, or a
