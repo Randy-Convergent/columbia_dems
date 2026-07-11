@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import { Image } from 'astro:assets';
+import communityHeart from '../assets/images/community-heart.jpg';
+import { DONATE_URL } from '../consts';
+---
+
+<Layout title="Donate" description="Support Columbia County Democrats and help elect Democratic candidates locally.">
+  <Section background="navy">
+    <div class="donate-grid">
+      <div>
+        <p class="eyebrow" style="color: var(--color-gold-400);">Fuel the fight, locally</p>
+        <h1>Every dollar stays in Columbia County.</h1>
+        <p class="lede">
+          Your contribution funds voter outreach, local candidate support, event costs, and the
+          organizing that gets neighbors to the polls — right here at home.
+        </p>
+        <Button href={DONATE_URL} variant="donate" external>Donate via ActBlue</Button>
+        <p class="fine-print">
+          You'll be taken to our secure ActBlue donation page. Contributions to Columbia County
+          Democrats are not tax-deductible.
+        </p>
+      </div>
+      <Image src={communityHeart} alt="Torn paper revealing the word community inside a heart" width={520} height={520} class="donate-img" />
+    </div>
+  </Section>
+
+  <Section background="white">
+    <h2>Where your donation goes</h2>
+    <div class="uses-grid">
+      <article>
+        <h3>Voter outreach</h3>
+        <p>Door-to-door canvassing, phone banks, and mailers that reach every corner of the county.</p>
+      </article>
+      <article>
+        <h3>Local candidates</h3>
+        <p>Direct support for Democratic candidates running for county and city office.</p>
+      </article>
+      <article>
+        <h3>Community events</h3>
+        <p>The Fair booth, monthly meetings, and protests that keep us visible and organized.</p>
+      </article>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .donate-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .lede {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+  }
+
+  .fine-print {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .donate-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .uses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .donate-grid,
+    .uses-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

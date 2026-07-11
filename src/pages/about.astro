@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import OfficerCard from '../components/OfficerCard.astro';
+import { Image } from 'astro:assets';
+import protestCrowd from '../assets/images/protest-crowd.jpg';
+
+const officers = (await getCollection('officers')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="About Us"
+  description="Learn about Columbia County Democrats' mission and the volunteer leadership team driving it."
+>
+  <Section background="navy" tight>
+    <p class="eyebrow" style="color: var(--color-gold-400);">Who we are</p>
+    <h1>Democracy is not a spectator sport.</h1>
+    <p class="lede">
+      Columbia County Democrats is committed to fostering a vibrant democratic community here at
+      home — upholding the U.S. Constitution, engaging every neighbor, and electing Democratic
+      candidates who fight inequality and systemic racism head-on.
+    </p>
+  </Section>
+
+  <Section background="white">
+    <div class="mission-grid">
+      <Image src={protestCrowd} alt="Columbia County Democrats members at a community protest" width={700} height={470} class="mission-img" />
+      <div>
+        <h2>Our mission</h2>
+        <p>
+          We exist to foster positive social and economic change through the election of
+          Democratic candidates — and to make sure every person in Columbia County has real access
+          to food, housing, education, healthcare, and employment.
+        </p>
+        <p>
+          That means showing up: at the ballot box, at the county fair, at the food bank, and in
+          the streets. We provide the resources, the community, and the organizing muscle — you
+          bring your voice.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section background="soft">
+    <p class="eyebrow">Meet the team</p>
+    <h2>Volunteer leadership, elected by the committee</h2>
+    <div class="officers-grid">
+      {officers.map((officer) => (
+        <OfficerCard
+          name={officer.data.name}
+          role={officer.data.role}
+          phone={officer.data.phone}
+          photo={officer.data.photo}
+        />
+      ))}
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .lede {
+    max-width: 48rem;
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .mission-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .officers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+    max-width: 50rem;
+  }
+
+  @media (max-width: 900px) {
+    .mission-grid,
+    .officers-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

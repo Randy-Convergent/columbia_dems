@@ -1,0 +1,109 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import EventCard from '../components/EventCard.astro';
+
+const allEvents = await getCollection('events');
+const now = new Date();
+
+const recurring = allEvents.filter((e) => e.data.recurring);
+const dated = allEvents
+  .filter((e) => !e.data.recurring && e.data.date)
+  .sort((a, b) => (a.data.date?.getTime() ?? 0) - (b.data.date?.getTime() ?? 0));
+
+const upcomingDated = dated.filter((e) => (e.data.date as Date) >= now);
+const pastDated = dated.filter((e) => (e.data.date as Date) < now);
+
+async function withContent(entries: typeof allEvents) {
+  return Promise.all(
+    entries.map(async (event) => ({ event, Content: (await render(event)).Content }))
+  );
+}
+
+const recurringRendered = await withContent(recurring);
+const upcomingRendered = await withContent(upcomingDated);
+const pastRendered = await withContent(pastDated);
+---
+
+<Layout title="Events" description="Upcoming meetings, protests, and events from Columbia County Democrats.">
+  <Section background="navy" tight>
+    <p class="eyebrow" style="color: var(--color-gold-400);">Show up with us</p>
+    <h1>Events</h1>
+    <p class="lede">From monthly meetings to community protests, here's where to find us.</p>
+  </Section>
+
+  <Section background="white">
+    <h2>Recurring</h2>
+    <div class="events-grid">
+      {recurringRendered.map(({ event, Content }) => (
+        <EventCard
+          title={event.data.title}
+          time={event.data.time}
+          location={event.data.location}
+          recurring={true}
+        >
+          <Content />
+        </EventCard>
+      ))}
+    </div>
+  </Section>
+
+  {upcomingRendered.length > 0 && (
+    <Section background="soft">
+      <h2>Upcoming</h2>
+      <div class="events-grid">
+        {upcomingRendered.map(({ event, Content }) => (
+          <EventCard
+            title={event.data.title}
+            date={event.data.date}
+            time={event.data.time}
+            location={event.data.location}
+            sample={event.data.sample}
+          >
+            <Content />
+          </EventCard>
+        ))}
+      </div>
+    </Section>
+  )}
+
+  {pastRendered.length > 0 && (
+    <Section background="white">
+      <h2>Past events</h2>
+      <div class="events-grid">
+        {pastRendered.map(({ event, Content }) => (
+          <EventCard
+            title={event.data.title}
+            date={event.data.date}
+            time={event.data.time}
+            location={event.data.location}
+            sample={event.data.sample}
+          >
+            <Content />
+          </EventCard>
+        ))}
+      </div>
+    </Section>
+  )}
+</Layout>
+
+<style>
+  .lede {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .events-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

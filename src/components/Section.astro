@@ -1,0 +1,49 @@
+---
+interface Props {
+  background?: 'white' | 'soft' | 'navy';
+  tight?: boolean;
+}
+
+const { background = 'white', tight = false } = Astro.props;
+---
+
+<section class:list={['section', `bg-${background}`, { tight }]}>
+  <div class="container">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-block: 5rem;
+  }
+
+  .section.tight {
+    padding-block: 2.5rem;
+  }
+
+  .bg-white {
+    background: var(--color-paper);
+  }
+
+  .bg-soft {
+    background: var(--color-paper-soft);
+  }
+
+  .bg-navy {
+    background: var(--color-navy-950);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .bg-navy :global(h1),
+  .bg-navy :global(h2),
+  .bg-navy :global(h3) {
+    color: white;
+  }
+
+  @media (max-width: 640px) {
+    .section {
+      padding-block: 3rem;
+    }
+  }
+</style>

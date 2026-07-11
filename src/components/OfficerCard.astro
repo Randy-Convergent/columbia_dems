@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import { CONTACT } from '../consts';
+
+interface Props {
+  name: string;
+  role: string;
+  phone?: string;
+  photo?: string;
+}
+
+const { name, role, phone, photo } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/*.jpg', { eager: true });
+const photoModule = photo ? images[`../assets/images/${photo}`] : undefined;
+
+const initials = name
+  .split(' ')
+  .map((part) => part[0])
+  .join('');
+---
+
+<article class="officer-card">
+  {photoModule ? (
+    <Image src={photoModule.default} alt={`${name}, ${role}`} width={480} height={480} class="photo" />
+  ) : (
+    <div class="photo placeholder" aria-hidden="true">{initials}</div>
+  )}
+  <h3>{name}</h3>
+  <p class="role">{role}</p>
+  {phone && <p class="phone"><a href={`tel:+1${phone.replace(/\D/g, '')}`}>{phone}</a></p>}
+  {!phone && <p class="phone"><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>}
+</article>
+
+<style>
+  .officer-card {
+    text-align: center;
+  }
+
+  .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .photo.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-blue-100);
+    color: var(--color-navy-800);
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .role {
+    color: var(--color-red-600);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .phone a {
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .phone a:hover {
+    color: var(--color-navy-900);
+  }
+</style>

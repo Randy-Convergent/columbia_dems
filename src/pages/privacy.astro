@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { CONTACT } from '../consts';
+---
+
+<Layout title="Privacy Policy" description="Privacy Policy for Columbia County Democrats.">
+  <Section background="white">
+    <h1>Privacy Policy</h1>
+    <div class="prose">
+      <p>
+        Columbia County Democrats respects your privacy. We collect only the information you
+        choose to share with us — for example, through our volunteer, newsletter, or contact
+        forms — and we use it solely to communicate with you about our organization, events, and
+        campaigns.
+      </p>
+      <p>
+        We do not sell or rent your personal information to third parties. If you'd like to update
+        your information or be removed from our contact list, email us at{' '}
+        <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
+      </p>
+      <p><em>This is placeholder policy language for a demo site and should be reviewed before launch.</em></p>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .prose {
+    max-width: 44rem;
+    color: var(--color-ink-soft);
+  }
+</style>

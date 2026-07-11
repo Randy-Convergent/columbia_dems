@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { CONTACT } from '../consts';
+---
+
+<Layout title="Accessibility Statement" description="Accessibility Statement for Columbia County Democrats.">
+  <Section background="white">
+    <h1>Accessibility Statement</h1>
+    <div class="prose">
+      <p>
+        Columbia County Democrats is committed to making this website usable by everyone,
+        including people who rely on assistive technology. We aim to meet the Web Content
+        Accessibility Guidelines (WCAG) 2.1 Level AA.
+      </p>
+      <p>
+        If you experience difficulty accessing any part of this site, please let us know at{' '}
+        <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or{' '}
+        <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>, and we'll work to fix it.
+      </p>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .prose {
+    max-width: 44rem;
+    color: var(--color-ink-soft);
+  }
+</style>
