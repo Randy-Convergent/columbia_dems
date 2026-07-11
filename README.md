@@ -7,7 +7,7 @@ Source for the Columbia County Democrats website — a redesign of
 **This build is a visual/content demo.** The volunteer, newsletter, and contact
 forms are fully styled and validate input, but they don't send anywhere yet —
 submitting one just shows a "thanks" message in the browser. See
-[Before you launch](#before-you-launch) for what's left to wire up.
+[TASKS.md](./TASKS.md) for what's left to wire up before launch.
 
 ## Local development
 
@@ -58,13 +58,5 @@ Site-wide values (donate link, phone/email, social links, nav) live in
 
 ## Before you launch
 
-- [x] Swap the placeholder ActBlue URL in `src/consts.ts` (`DONATE_URL`) for
-      the real committee donation link.
-- [ ] Wire the volunteer, newsletter, and contact forms to a real backend —
-      e.g. a Cloudflare Pages Function that emails submissions, or a
-      third-party form service. The form markup in `src/components/DemoForm.astro`
-      and the pages that use it are already structured for this.
-- [ ] Replace the sample dated event in `src/content/events/sample-county-fair.md`
-      with a real upcoming event (or delete it if there isn't one yet).
-- [ ] Double-check officer contact info and photos in `src/content/officers/`.
-- [ ] Connect the production domain in Cloudflare Pages.
+See [TASKS.md](./TASKS.md) for the running list of launch blockers and
+recommended improvements.
