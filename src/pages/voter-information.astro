@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import { Image } from 'astro:assets';
 import columbiaCountyCourthouse from '../assets/images/columbia-county-courthouse.jpg';
+import ballotDrop from '../assets/images/ballot-drop.jpg';
 
 const resources = [
   {
@@ -58,6 +59,20 @@ const resources = [
   </Section>
 
   <Section background="soft">
+    <div class="ballot-grid">
+      <Image src={ballotDrop} alt="Columbia County Democrats social media manager Alicia and her daughter Madison dropping off a ballot at an official drop box" width={600} height={800} class="ballot-img" />
+      <div>
+        <h2>However you vote, make it count.</h2>
+        <p>
+          Whether you mail your ballot, drop it at an official drop box, or vote in person, your
+          voice shapes decisions here in Columbia County. Every ballot is verified and counted —
+          make sure yours is one of them.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section background="white">
     <h2>Questions about voting?</h2>
     <p>
       Reach out to Chair Greg Pettit at <a href="tel:+15033337768">503-333-7768</a> and we'll help
@@ -132,9 +147,32 @@ const resources = [
     font-weight: 700;
   }
 
+  .ballot-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .ballot-img {
+    width: 100%;
+    height: auto;
+    max-width: 22rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
   @media (max-width: 720px) {
     .resources-grid {
       grid-template-columns: 1fr;
+    }
+
+    .ballot-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ballot-img {
+      max-width: 18rem;
     }
   }
 </style>
