@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import { Image } from 'astro:assets';
-import forestCanopy from '../assets/images/forest-canopy.jpg';
+import columbiaCountyCourthouse from '../assets/images/columbia-county-courthouse.jpg';
 
 const resources = [
   {
@@ -33,7 +33,7 @@ const resources = [
   description="Register to vote, find key election deadlines, and get Columbia County election results."
 >
   <section class="hero">
-    <Image src={forestCanopy} alt="Aerial view of an Oregon forest canopy" class="hero-img" width={1920} height={700} />
+    <Image src={columbiaCountyCourthouse} alt="The Columbia County Courthouse clock tower in St. Helens, with Mt. St. Helens in the distance" class="hero-img" width={1920} height={700} />
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <p class="eyebrow" style="color: var(--color-gold-400);">Every voter. Every vote.</p>
@@ -86,7 +86,7 @@ const resources = [
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 26, 51, 0.75), rgba(10, 26, 51, 0.85));
+    background: linear-gradient(100deg, rgba(10, 26, 51, 0.82) 25%, rgba(10, 26, 51, 0.35) 85%);
   }
 
   .hero-content {
@@ -94,6 +94,7 @@ const resources = [
     color: white;
     max-width: 42rem;
     padding-block: 3.5rem;
+    text-shadow: 0 2px 16px rgba(10, 26, 51, 0.5);
   }
 
   .hero-content h1 {
