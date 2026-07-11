@@ -3,6 +3,8 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import EventCard from '../components/EventCard.astro';
+import { Image } from 'astro:assets';
+import scappooseTotemPole from '../assets/images/scappoose-totem-pole.jpg';
 
 const allEvents = await getCollection('events');
 const now = new Date();
@@ -27,10 +29,24 @@ const pastRendered = await withContent(pastDated);
 ---
 
 <Layout title="Events" description="Upcoming meetings, protests, and events from Columbia County Democrats.">
-  <Section background="navy" tight>
-    <p class="eyebrow" style="color: var(--color-gold-400);">Show up with us</p>
-    <h1>Events</h1>
-    <p class="lede">From monthly meetings to community protests, here's where to find us.</p>
+  <Section background="navy">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" style="color: var(--color-gold-400);">Show up with us</p>
+        <h1>Events</h1>
+        <p class="lede">
+          From monthly meetings to community protests, here's where to find us — including the
+          Scappoose totem pole, one of our regular protest spots.
+        </p>
+      </div>
+      <Image
+        src={scappooseTotemPole}
+        alt="The welcome sign and totem pole in Scappoose, Oregon"
+        width={480}
+        height={854}
+        class="hero-photo"
+      />
+    </div>
   </Section>
 
   <Section background="white">
@@ -94,6 +110,22 @@ const pastRendered = await withContent(pastDated);
     font-size: 1.1rem;
   }
 
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: auto;
+    max-width: 18rem;
+    margin-inline: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
   .events-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -102,6 +134,7 @@ const pastRendered = await withContent(pastDated);
   }
 
   @media (max-width: 900px) {
+    .hero-grid,
     .events-grid {
       grid-template-columns: 1fr;
     }
