@@ -5,6 +5,7 @@ import Section from '../components/Section.astro';
 import OfficerCard from '../components/OfficerCard.astro';
 import { Image } from 'astro:assets';
 import protestCrowd from '../assets/images/protest-crowd.jpg';
+import { STATE_PARTY } from '../consts';
 
 const officers = (await getCollection('officers')).sort((a, b) => a.data.order - b.data.order);
 ---
@@ -40,6 +41,12 @@ const officers = (await getCollection('officers')).sort((a, b) => a.data.order -
           the streets. We provide the resources, the community, and the organizing muscle — you
           bring your voice.
         </p>
+        <p class="affiliation">
+          We're the official Columbia County chapter of the{' '}
+          <a href={STATE_PARTY.about} target="_blank" rel="noopener noreferrer">Oregon Democratic Party</a>,
+          listed on their{' '}
+          <a href={STATE_PARTY.county} target="_blank" rel="noopener noreferrer">county chapter page</a>.
+        </p>
       </div>
     </div>
   </Section>
@@ -72,6 +79,16 @@ const officers = (await getCollection('officers')).sort((a, b) => a.data.order -
     grid-template-columns: 1fr 1.1fr;
     gap: 3rem;
     align-items: center;
+  }
+
+  .affiliation {
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+  }
+
+  .affiliation a {
+    color: var(--color-blue-600);
+    font-weight: 600;
   }
 
   .mission-img {

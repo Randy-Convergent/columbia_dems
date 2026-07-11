@@ -1,5 +1,5 @@
 ---
-import { CONTACT, NAV_LINKS } from '../consts';
+import { CONTACT, NAV_LINKS, STATE_PARTY } from '../consts';
 import SocialLinks from './SocialLinks.astro';
 
 const year = new Date().getFullYear();
@@ -31,6 +31,13 @@ const year = new Date().getFullYear();
         <li>Columbia County, Oregon</li>
       </ul>
     </div>
+
+    <div>
+      <h2>Affiliation</h2>
+      <ul>
+        <li><a href={STATE_PARTY.county} target="_blank" rel="noopener noreferrer">Oregon Democratic Party</a></li>
+      </ul>
+    </div>
   </div>
 
   <div class="container legal">
@@ -52,8 +59,8 @@ const year = new Date().getFullYear();
 
   .grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 2rem;
     padding-bottom: 2.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }

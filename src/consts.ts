@@ -20,6 +20,11 @@ export const SOCIAL = {
   tiktok: 'https://www.tiktok.com/@columbiacountydem',
 };
 
+export const STATE_PARTY = {
+  county: 'https://dpo.org/counties/columbia/',
+  about: 'https://dpo.org/party/about-the-party/',
+};
+
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
