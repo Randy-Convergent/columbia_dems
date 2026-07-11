@@ -7,14 +7,17 @@ Check items off as they're done; add new ones as they come up.
 
 - [x] Swap the placeholder ActBlue URL in `src/consts.ts` (`DONATE_URL`) for
       the real committee donation link.
-- [ ] Wire the volunteer, newsletter, and contact forms to a real backend —
-      e.g. a Cloudflare Pages Function that emails submissions, or a
-      third-party form service. The form markup in `src/components/DemoForm.astro`
-      and the pages that use it are already structured for this.
+- [x] Wire the volunteer, newsletter, and contact forms to a real backend —
+      `worker/index.ts` now emails submissions via Resend. Remaining:
+  - [ ] Set the `RESEND_API_KEY` secret on the live Worker (`npx wrangler secret put RESEND_API_KEY`).
+  - [ ] Verify `columbiacountydems.org` as a sending domain in Resend (SPF/DKIM
+        records alongside the existing Google Workspace ones), then update
+        `FROM_EMAIL` in `worker/index.ts` — currently sends from Resend's
+        shared `onboarding@resend.dev` address.
 - [ ] Replace the sample dated event in `src/content/events/sample-county-fair.md`
       with a real upcoming event (or delete it if there isn't one yet).
 - [ ] Double-check officer contact info and photos in `src/content/officers/`.
-- [ ] Connect the production domain in Cloudflare Pages.
+- [ ] Connect the production domain (Worker custom domain, not Pages).
 
 ## Recommended improvements
 

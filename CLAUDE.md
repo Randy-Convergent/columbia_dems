@@ -4,27 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Static marketing site for Columbia County Democrats, built with Astro 7 and deployed to Cloudflare
-Pages/Workers (see `wrangler.jsonc`). It is a from-scratch redesign of columbiacountydems.org, not
-yet cut over from the current Wix site.
-
-**This build is a content/visual demo, not a fully wired site.** The volunteer, newsletter, and
-contact forms (`src/components/DemoForm.astro`) are styled and validate client-side but don't
-submit anywhere — submitting just reveals a "thanks" message. See `TASKS.md` for this and other
-launch blockers, and keep it updated as items are completed or added.
+Static marketing site for Columbia County Democrats, built with Astro 7 and deployed as a
+Cloudflare Worker with static assets (see `wrangler.jsonc` — `main` + `assets` binding, not classic
+Pages). It is a from-scratch redesign of columbiacountydems.org, not yet cut over from the current
+Wix site. See `TASKS.md` for launch blockers and keep it updated as items are completed or added.
 
 ## Commands
 
 ```sh
 npm install
-npm run dev       # http://localhost:4321, live reload
-npm run build     # outputs static site to dist/
-npm run preview   # serve the built dist/ locally
-npx astro check   # typecheck .astro files + content collection schemas
+npm run dev         # http://localhost:4321, live reload (Astro only — forms won't send)
+npm run build       # outputs static site to dist/
+npm run preview     # serve the built dist/ locally (Astro only)
+npm run dev:worker  # build + run the full Worker locally via wrangler (forms work end-to-end)
+npm run deploy      # build + wrangler deploy
+npx astro check     # typecheck .astro files + content collection schemas
 ```
 
 There is no lint script and no test suite. Always run `npx astro check` and `npm run build` after
-changes — both should complete with 0 errors before considering a change done.
+changes — both should complete with 0 errors before considering a change done. If you touch
+`worker/index.ts`, also run `npx tsc --noEmit -p worker/tsconfig.json` (it's outside Astro's own
+typecheck) and smoke-test with `npm run dev:worker` — see `.dev.vars.example`.
 
 ## Architecture
 
@@ -52,8 +52,17 @@ changes — both should complete with 0 errors before considering a change done.
 - Events on `/events` and the homepage split into recurring / upcoming / past by comparing
   frontmatter `date` against `new Date()` **at build time** — this is a static site, so that
   classification only updates on the next deploy, not in real time.
+- **`worker/index.ts`** is a separate Cloudflare Worker (not part of the Astro build) that handles
+  `POST /api/contact`, `/api/volunteer`, `/api/newsletter` by emailing the submission via Resend,
+  and falls through to `env.ASSETS.fetch(request)` (the built Astro site) for everything else.
+  Typechecked independently via `worker/tsconfig.json` since it's Workers runtime code, not
+  browser/Astro code. `src/components/Form.astro` is the shared client-side form component (POSTs
+  via `fetch`, shows success/error messages, includes a honeypot field) — pass it an `action` prop
+  matching one of those routes.
 
 ## Deployment
 
-Cloudflare Pages, static output (`dist/`). Build command `npm run build`, output directory `dist`.
-Production domain cutover and other pre-launch steps are tracked in `TASKS.md`, not here.
+Cloudflare Worker with static assets (`wrangler.jsonc`: `main` is the form-handling Worker,
+`assets.directory` is the built Astro site). Deploy with `npm run deploy`. Needs a `RESEND_API_KEY`
+secret set via `wrangler secret put` — see the README's "Form backend" section. Production domain
+cutover and other pre-launch steps are tracked in `TASKS.md`, not here.

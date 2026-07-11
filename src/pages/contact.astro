@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
-import DemoForm from '../components/DemoForm.astro';
+import Form from '../components/Form.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { CONTACT } from '../consts';
 ---
@@ -29,7 +29,7 @@ import { CONTACT } from '../consts';
 
       <div>
         <h2>Send a message</h2>
-        <DemoForm id="contact-form" submitLabel="Send Message">
+        <Form id="contact-form" action="/api/contact" submitLabel="Send Message">
           <div>
             <label for="c-first">First name</label>
             <input id="c-first" name="first-name" type="text" required autocomplete="given-name" />
@@ -46,7 +46,7 @@ import { CONTACT } from '../consts';
             <label for="c-message">Message</label>
             <textarea id="c-message" name="message" rows="5" required></textarea>
           </div>
-        </DemoForm>
+        </Form>
       </div>
     </div>
   </Section>

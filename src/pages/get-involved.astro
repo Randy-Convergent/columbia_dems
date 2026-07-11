@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
-import DemoForm from '../components/DemoForm.astro';
+import Form from '../components/Form.astro';
 import SocialCTAButtons from '../components/SocialCTAButtons.astro';
 import { Image } from 'astro:assets';
 import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
@@ -31,7 +31,7 @@ import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
           Tell us a bit about yourself and how you'd like to help — canvassing, phone banking,
           hosting yard signs, or lending a professional skill.
         </p>
-        <DemoForm id="volunteer-form" submitLabel="Sign Up to Volunteer">
+        <Form id="volunteer-form" action="/api/volunteer" submitLabel="Sign Up to Volunteer">
           <div>
             <label for="v-name">Full name</label>
             <input id="v-name" name="name" type="text" required autocomplete="name" />
@@ -60,7 +60,7 @@ import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
             <label for="v-message">Anything else we should know? (optional)</label>
             <textarea id="v-message" name="message" rows="3"></textarea>
           </div>
-        </DemoForm>
+        </Form>
       </div>
 
       <div>
@@ -69,7 +69,7 @@ import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
           Get monthly meeting reminders, action alerts, and election updates straight to your
           inbox.
         </p>
-        <DemoForm id="newsletter-form" submitLabel="Subscribe">
+        <Form id="newsletter-form" action="/api/newsletter" submitLabel="Subscribe">
           <div>
             <label for="n-name">First name</label>
             <input id="n-name" name="name" type="text" required autocomplete="given-name" />
@@ -78,7 +78,7 @@ import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
             <label for="n-email">Email</label>
             <input id="n-email" name="email" type="email" required autocomplete="email" />
           </div>
-        </DemoForm>
+        </Form>
 
         <div class="callout">
           <h3>Prefer to just show up?</h3>
