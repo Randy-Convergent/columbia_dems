@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import CandidateCard from '../components/CandidateCard.astro';
+
+const candidates = (await getCollection('endorsements')).sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+  candidates.map(async (candidate) => ({ candidate, Content: (await render(candidate)).Content }))
+);
+---
+
+<Layout
+  title="Candidate Endorsements"
+  description="Columbia County Democrats' endorsed candidates for the November 2026 election."
+>
+  <Section background="navy" tight>
+    <p class="eyebrow" style="color: var(--color-gold-400);">November 2026 election</p>
+    <h1>Candidate Endorsements</h1>
+    <p class="lede">
+      Columbia County Democrats is proud to endorse these candidates for the upcoming November
+      election. Learn who they are and why we're backing them.
+    </p>
+  </Section>
+
+  <Section background="white">
+    <div class="candidates-grid">
+      {rendered.map(({ candidate, Content }) => (
+        <CandidateCard
+          name={candidate.data.name}
+          office={candidate.data.office}
+          photo={candidate.data.photo}
+          website={candidate.data.website}
+          sample={candidate.data.sample}
+        >
+          <Content />
+        </CandidateCard>
+      ))}
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .lede {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+  }
+
+  .candidates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .candidates-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

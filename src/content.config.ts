@@ -24,4 +24,16 @@ const officers = defineCollection({
   }),
 });
 
-export const collections = { events, officers };
+const endorsements = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/endorsements' }),
+  schema: z.object({
+    name: z.string(),
+    office: z.string(),
+    order: z.number(),
+    photo: z.string().optional(),
+    website: z.string().url().optional(),
+    sample: z.boolean().default(false),
+  }),
+});
+
+export const collections = { events, officers, endorsements };

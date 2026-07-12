@@ -29,6 +29,7 @@ export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/voter-information', label: 'Voter Information' },
+  { href: '/endorsements', label: 'Endorsements' },
   { href: '/events', label: 'Events' },
   { href: '/get-involved', label: 'Get Involved' },
   { href: '/contact', label: 'Contact' },
