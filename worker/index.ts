@@ -5,11 +5,13 @@ export interface Env {
   ASSETS: Fetcher;
 }
 
-// Add more addresses here to deliver form submissions to multiple inboxes.
-const TO_EMAILS = ['info@columbiademocrats.org'];
-const CC_EMAILS = ['groseclosea31@yahoo.com'];
-// Using Resend's shared onboarding@resend.dev sender until columbiacountydems.org
-// is verified with Resend — swap this once that's done (see TASKS.md).
+// TEMPORARY: onboarding@resend.dev can only deliver to the Resend account's own
+// signup address until columbiacountydems.org is verified as a sending domain
+// (blocked on DNS access — see TASKS.md). Restore these once verified:
+//   const TO_EMAILS = ['info@columbiademocrats.org'];
+//   const CC_EMAILS = ['groseclosea31@yahoo.com'];
+const TO_EMAILS = ['randy@convergent.consulting'];
+const CC_EMAILS: string[] = [];
 const FROM_EMAIL = 'Columbia County Democrats <onboarding@resend.dev>';
 
 const INTEREST_LABELS: Record<string, string> = {
@@ -39,7 +41,7 @@ async function sendEmail(env: Env, subject: string, lines: string[], replyTo?: s
     body: JSON.stringify({
       from: FROM_EMAIL,
       to: TO_EMAILS,
-      cc: CC_EMAILS,
+      cc: CC_EMAILS.length > 0 ? CC_EMAILS : undefined,
       subject,
       text: lines.join('\n'),
       reply_to: replyTo || undefined,

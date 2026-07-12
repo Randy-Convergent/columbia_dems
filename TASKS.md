@@ -9,11 +9,19 @@ Check items off as they're done; add new ones as they come up.
       the real committee donation link.
 - [x] Wire the volunteer, newsletter, and contact forms to a real backend —
       `worker/index.ts` now emails submissions via Resend. Remaining:
-  - [ ] Set the `RESEND_API_KEY` secret on the live Worker (`npx wrangler secret put RESEND_API_KEY`).
-  - [ ] Verify `columbiacountydems.org` as a sending domain in Resend (SPF/DKIM
-        records alongside the existing Google Workspace ones), then update
-        `FROM_EMAIL` in `worker/index.ts` — currently sends from Resend's
-        shared `onboarding@resend.dev` address.
+  - [x] Set the `RESEND_API_KEY` secret on the live Worker.
+  - [ ] **`columbiacountydems.org` DNS is on Wix, which doesn't support the
+        subdomain MX record Resend needs for domain verification.** Until
+        this is resolved, `worker/index.ts` sends from Resend's shared
+        `onboarding@resend.dev` sender, which can only deliver to the Resend
+        account's own signup address — so `TO_EMAILS`/`CC_EMAILS` are
+        temporarily overridden to a test address instead of the real
+        `info@columbiademocrats.org` / `groseclosea31@yahoo.com`. Options:
+        move the domain's DNS to Cloudflare (also satisfies the item below),
+        or find another domain/DNS host to verify with Resend. Once
+        verified, restore the real `TO_EMAILS`/`CC_EMAILS` (commented out
+        in `worker/index.ts`) and update `FROM_EMAIL` to send from the
+        verified domain.
 - [ ] Replace the sample dated event in `src/content/events/sample-county-fair.md`
       with a real upcoming event (or delete it if there isn't one yet).
 - [ ] Double-check officer contact info and photos in `src/content/officers/`.
