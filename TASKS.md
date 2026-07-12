@@ -24,7 +24,8 @@ Check items off as they're done; add new ones as they come up.
         verified domain.
 - [x] Replace the sample dated event with the real Columbia County Fair
       booth (`src/content/events/county-fair.md`).
-- [ ] Double-check officer contact info and photos in `src/content/officers/`.
+- [x] Double-check officer contact info and photos in `src/content/officers/`
+      — confirmed correct.
 - [ ] Connect the production domain (Worker custom domain, not Pages).
 
 ## Recommended improvements
