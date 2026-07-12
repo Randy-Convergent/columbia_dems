@@ -22,17 +22,13 @@ const initials = name
 
 <article class="candidate-card">
   {sample && <p class="badge">Sample content — replace before launch</p>}
-  <div class="header">
-    {photoModule ? (
-      <Image src={photoModule.default} alt={name} width={120} height={120} class="photo" />
-    ) : (
-      <div class="photo placeholder" aria-hidden="true">{initials}</div>
-    )}
-    <div>
-      <h3>{name}</h3>
-      <p class="office">{office}</p>
-    </div>
-  </div>
+  {photoModule ? (
+    <Image src={photoModule.default} alt={name} width={480} height={480} class="photo" />
+  ) : (
+    <div class="photo placeholder" aria-hidden="true">{initials}</div>
+  )}
+  <h3>{name}</h3>
+  <p class="office">{office}</p>
   <div class="body">
     <slot />
   </div>
@@ -67,19 +63,13 @@ const initials = name
     align-self: flex-start;
   }
 
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
   .photo {
-    width: 4.5rem;
-    height: 4.5rem;
-    flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 999px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-card);
   }
 
   .photo.placeholder {
@@ -89,7 +79,7 @@ const initials = name
     background: var(--color-blue-100);
     color: var(--color-navy-800);
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 2.5rem;
     font-weight: 700;
   }
 
@@ -103,7 +93,7 @@ const initials = name
     text-transform: uppercase;
     font-size: 0.78rem;
     letter-spacing: 0.05em;
-    margin: 0;
+    margin: 0 0 1rem;
   }
 
   .body {
