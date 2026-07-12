@@ -7,8 +7,10 @@ Check items off as they're done; add new ones as they come up.
 
 - [x] Swap the placeholder ActBlue URL in `src/consts.ts` (`DONATE_URL`) for
       the real committee donation link.
-- [x] Wire the volunteer, newsletter, and contact forms to a real backend —
-      `worker/index.ts` now emails submissions via Resend. Remaining:
+- [x] Wire the volunteer and contact forms to a real backend —
+      `worker/index.ts` now emails submissions via Resend. (There's no
+      newsletter yet, so that form was removed rather than wired up —
+      revisit if/when there's a real newsletter to sign up for.) Remaining:
   - [x] Set the `RESEND_API_KEY` secret on the live Worker.
   - [ ] **`columbiacountydems.org` DNS is on Wix, which doesn't support the
         subdomain MX record Resend needs for domain verification.** Until

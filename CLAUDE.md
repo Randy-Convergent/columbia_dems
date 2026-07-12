@@ -53,7 +53,7 @@ typecheck) and smoke-test with `npm run dev:worker` — see `.dev.vars.example`.
   frontmatter `date` against `new Date()` **at build time** — this is a static site, so that
   classification only updates on the next deploy, not in real time.
 - **`worker/index.ts`** is a separate Cloudflare Worker (not part of the Astro build) that handles
-  `POST /api/contact`, `/api/volunteer`, `/api/newsletter` by emailing the submission via Resend,
+  `POST /api/contact` and `/api/volunteer` by emailing the submission via Resend,
   and falls through to `env.ASSETS.fetch(request)` (the built Astro site) for everything else.
   Typechecked independently via `worker/tsconfig.json` since it's Workers runtime code, not
   browser/Astro code. `src/components/Form.astro` is the shared client-side form component (POSTs

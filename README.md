@@ -5,8 +5,8 @@ Source for the Columbia County Democrats website — a redesign of
 [Astro](https://astro.build) and deployed as a Cloudflare Worker with static
 assets.
 
-The volunteer, newsletter, and contact forms submit to a small Worker
-(`worker/index.ts`) that emails submissions via [Resend](https://resend.com).
+The volunteer and contact forms submit to a small Worker (`worker/index.ts`)
+that emails submissions via [Resend](https://resend.com).
 See [TASKS.md](./TASKS.md) for what's left before launch.
 
 ## Local development
@@ -50,10 +50,10 @@ address live in `worker/index.ts`.
 
 ## Form backend
 
-`worker/index.ts` is a Cloudflare Worker that handles `POST /api/contact`,
-`/api/volunteer`, and `/api/newsletter`, emails the submission via Resend,
-and falls through to the static site (via the `ASSETS` binding) for
-everything else. It needs a `RESEND_API_KEY` secret to work:
+`worker/index.ts` is a Cloudflare Worker that handles `POST /api/contact` and
+`/api/volunteer`, emails the submission via Resend, and falls through to the
+static site (via the `ASSETS` binding) for everything else. It needs a
+`RESEND_API_KEY` secret to work:
 
 ```sh
 npx wrangler secret put RESEND_API_KEY

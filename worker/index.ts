@@ -104,17 +104,6 @@ async function handleVolunteer(request: Request, env: Env): Promise<Response> {
   return jsonResponse(ok);
 }
 
-async function handleNewsletter(request: Request, env: Env): Promise<Response> {
-  const form = await request.formData();
-  if (isSpam(form)) return jsonResponse(true);
-
-  const name = field(form, 'name');
-  const email = field(form, 'email');
-
-  const ok = await sendEmail(env, `Newsletter sign-up: ${name}`, [`Name: ${name}`, `Email: ${email}`], email);
-  return jsonResponse(ok);
-}
-
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const { pathname } = new URL(request.url);
@@ -124,9 +113,6 @@ export default {
     }
     if (request.method === 'POST' && pathname === '/api/volunteer') {
       return handleVolunteer(request, env);
-    }
-    if (request.method === 'POST' && pathname === '/api/newsletter') {
-      return handleNewsletter(request, env);
     }
 
     return env.ASSETS.fetch(request);

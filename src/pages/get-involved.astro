@@ -9,7 +9,7 @@ import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
 
 <Layout
   title="Get Involved"
-  description="Volunteer with Columbia County Democrats or sign up for our newsletter."
+  description="Volunteer with Columbia County Democrats."
 >
   <section class="hero">
     <Image src={sunsetMeetingPlace} alt="A dramatic sunset sky over the hall where Columbia County Democrats meet" class="hero-img" width={1920} height={950} position="bottom" />
@@ -64,26 +64,11 @@ import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
       </div>
 
       <div>
-        <h2>Join our newsletter</h2>
+        <h2>Prefer to just show up?</h2>
         <p>
-          Get monthly meeting reminders, action alerts, and election updates straight to your
-          inbox.
+          No signup required — check our <a href="/events">Events page</a> for the next meeting or
+          protest, or follow us on social media for real-time updates on where to find us.
         </p>
-        <Form id="newsletter-form" action="/api/newsletter" submitLabel="Subscribe">
-          <div>
-            <label for="n-name">First name</label>
-            <input id="n-name" name="name" type="text" required autocomplete="given-name" />
-          </div>
-          <div>
-            <label for="n-email">Email</label>
-            <input id="n-email" name="email" type="email" required autocomplete="email" />
-          </div>
-        </Form>
-
-        <div class="callout">
-          <h3>Prefer to just show up?</h3>
-          <p>Check our <a href="/events">Events page</a> for the next meeting or protest — no signup required.</p>
-        </div>
       </div>
     </div>
   </Section>
@@ -148,18 +133,6 @@ import sunsetMeetingPlace from '../assets/images/sunset-meeting-place.jpg';
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 3.5rem;
-  }
-
-  .callout {
-    margin-top: 2rem;
-    background: var(--color-paper-soft);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-  }
-
-  .callout h3 {
-    margin-bottom: 0.5rem;
   }
 
   .social-section {
