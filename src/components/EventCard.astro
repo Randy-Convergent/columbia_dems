@@ -11,7 +11,7 @@ interface Props {
 const { title, date, time, location, recurring = false, sample = false } = Astro.props;
 
 const formattedDate = date
-  ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date)
+  ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(date)
   : undefined;
 ---
 

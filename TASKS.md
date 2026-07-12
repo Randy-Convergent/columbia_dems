@@ -22,8 +22,8 @@ Check items off as they're done; add new ones as they come up.
         verified, restore the real `TO_EMAILS`/`CC_EMAILS` (commented out
         in `worker/index.ts`) and update `FROM_EMAIL` to send from the
         verified domain.
-- [ ] Replace the sample dated event in `src/content/events/sample-county-fair.md`
-      with a real upcoming event (or delete it if there isn't one yet).
+- [x] Replace the sample dated event with the real Columbia County Fair
+      booth (`src/content/events/county-fair.md`).
 - [ ] Double-check officer contact info and photos in `src/content/officers/`.
 - [ ] Connect the production domain (Worker custom domain, not Pages).
 
